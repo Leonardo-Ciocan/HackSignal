@@ -30,4 +30,21 @@ public class Beacon extends ParseObject {
     public void setUser(ParseUser user){
         put("user",user);
     }
+
+    public String getPurpose(){
+        return getString("purpose");
+    }
+
+    public void setPurpose(String name){
+        put("purpose",name);
+    }
+
+    public String getTech(){
+        return getString("tech");
+    }
+
+    public void setTech(String name){
+        put("tech",name);
+    }
+
 }
