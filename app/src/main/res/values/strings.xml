@@ -7,4 +7,5 @@
     <string name="title_activity_profile">ProfileActivity</string>
     <string name="title_activity_profile_edit">ProfileEditActivity</string>
     <string name="title_activity_beacon_detail">BeaconDetailActivity</string>
+
 </resources>
