@@ -37,6 +37,7 @@ public class LoginActivity extends ActionBarActivity {
 
                 intent.putExtra("UsrNmae",userName.getText().toString());
                 intent.putExtra("UsrNmae",passWord.getText().toString());
+                //commit
 
 
 
