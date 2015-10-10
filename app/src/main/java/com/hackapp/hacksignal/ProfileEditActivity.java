@@ -30,7 +30,7 @@ public class ProfileEditActivity extends ActionBarActivity {
         setContentView(R.layout.activity_profile_edit);
 
         languageEdit = (EditText) findViewById(R.id.editTextLanguage);
-
+        //I
         //LISTVIEW
         String[] languages = {"Java","C#","C++","C","Ruby","Python","SQL","PHP","JavaScrip","Object-c","Visual Basic","Scala","HasKell","Pascal"};
         ArrayList<String> arrayList = new ArrayList<String>(Arrays.asList(languages));
