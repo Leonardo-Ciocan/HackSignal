@@ -24,7 +24,7 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="29dp"
-        android:id="@+id/UserName"
+        android:id="@+id/userName"
         android:layout_gravity="center_vertical"
         android:layout_marginTop="50dp"
         android:layout_marginLeft="16dp"
@@ -62,9 +62,7 @@
         android:background="@drawable/loginbutton"
         android:textColor="#ffffff"
         android:textSize="24sp"
-
-
-        android:id="@+id/button"
+        android:id="@+id/loginBtn"
         android:layout_gravity="center_horizontal" />
 
 </LinearLayout>

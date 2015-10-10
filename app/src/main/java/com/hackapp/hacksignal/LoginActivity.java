@@ -1,17 +1,41 @@
 package com.hackapp.hacksignal;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 
 
 public class LoginActivity extends ActionBarActivity {
+
+    EditText userName;
+    EditText passWord;
+    Button   loginBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        userName = (EditText) findViewById(R.id.userName);
+        passWord = (EditText) findViewById(R.id.usersPassword);
+        loginBtn = (Button) findViewById(R.id.loginBtn);
+
+        loginBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Log.d("Login Screen: ",  userName.getText().toString());
+                Log.d("Login Screen: ",  passWord.getText().toString());
+
+
+            }
+        });
+
     }
 
     @Override
