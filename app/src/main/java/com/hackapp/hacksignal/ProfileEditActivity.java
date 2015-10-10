@@ -15,6 +15,9 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 
 
 public class ProfileEditActivity extends ActionBarActivity {
@@ -29,9 +32,11 @@ public class ProfileEditActivity extends ActionBarActivity {
         languageEdit = (EditText) findViewById(R.id.editTextLanguage);
 
 
-        String[] languages = {"Java","C#","C++","C","Ruby","Phyton"};
+        String[] languages = {"Java","C#","C++","C","Ruby","Python","SQL","PHP","JavaScrip","Object-c","Visual Basic","Scala","HasKell","Pascal"};
+        ArrayList<String> arrayList = new ArrayList<String>(Arrays.asList(languages));
+        Collections.sort(arrayList);
         ListView listView = (ListView) findViewById(R.id.listView);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,R.layout.list_item,R.id.item,languages);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,R.layout.list_item,R.id.item,arrayList);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new ItemList());
 
@@ -87,7 +92,7 @@ public class ProfileEditActivity extends ActionBarActivity {
             TextView tv = (TextView) vg.findViewById(R.id.item);
             Toast.makeText(ProfileEditActivity.this,tv.getText().toString(),Toast.LENGTH_SHORT).show();
             if(!checkLanguage(tv.getText().toString())){
-                languageEdit.setText(languageEdit.getText() + tv.getText().toString()+ ";");
+                languageEdit.setText(languageEdit.getText() + tv.getText().toString()+ ", ");
             }else{
                 showDialog("This Language is Already on the List");
             }
