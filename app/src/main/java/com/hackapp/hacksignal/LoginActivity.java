@@ -1,5 +1,6 @@
 package com.hackapp.hacksignal;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
@@ -31,6 +32,13 @@ public class LoginActivity extends ActionBarActivity {
 
                 Log.d("Login Screen: ",  userName.getText().toString());
                 Log.d("Login Screen: ",  passWord.getText().toString());
+
+                Intent intent = new Intent(LoginActivity.this, ProfileActivity.class );
+
+                intent.putExtra("UsrNmae",userName.getText().toString());
+                intent.putExtra("UsrNmae",passWord.getText().toString());
+
+
 
 
             }
