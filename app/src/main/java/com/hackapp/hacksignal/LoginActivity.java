@@ -18,6 +18,7 @@ public class LoginActivity extends ActionBarActivity {
     EditText userName;
     EditText passWord;
     Button   loginBtn;
+    Button registerBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +28,7 @@ public class LoginActivity extends ActionBarActivity {
         userName = (EditText) findViewById(R.id.userName);
         passWord = (EditText) findViewById(R.id.usersPassword);
         loginBtn = (Button) findViewById(R.id.loginBtn);
+        registerBtn = (Button) findViewById(R.id.registerBtn);
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,6 +47,21 @@ public class LoginActivity extends ActionBarActivity {
 
             }
         });
+
+        registerBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent register = new Intent(LoginActivity.this, ProfileEditActivity.class);
+
+                LoginActivity.this.startActivity(register);
+
+                //commit
+
+            }
+        });
+
+
 
     }
 

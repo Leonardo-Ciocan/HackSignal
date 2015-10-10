@@ -2,15 +2,60 @@ package com.hackapp.hacksignal.models;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.hackapp.hacksignal.R;
 
 public class WelcomeScreen extends ActionBarActivity {
 
+    Button createBeacon;
+    Button exploreBeacon;
+    Animation myAnimation , myAnimation2;
+    TextView welcomeName;
+    TextView textView2;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome_screen);
+
+        createBeacon = (Button) findViewById(R.id.createBeaconBtn);
+        exploreBeacon = (Button) findViewById(R.id.exploreBeaconBtn);
+        welcomeName = (TextView) findViewById(R.id.welcomeName);
+        textView2 = (TextView) findViewById(R.id.textView2);
+        myAnimation = AnimationUtils.loadAnimation(this, R.anim.text_animation);
+        myAnimation2 = AnimationUtils.loadAnimation(this, R.anim.label2_anim);
+
+        createBeacon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+               // Intent intent = new Intent(WelcomeScreen.this, );
+
+               // LoginActivity.this.startActivity(intent);
+
+                //commit
+
+            }
+        });
+
+        welcomeName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                welcomeName.startAnimation(myAnimation);
+            }
+        });
+            welcomeName.startAnimation(myAnimation);
+            textView2.startAnimation(myAnimation2);
+
+
 
 
     }
