@@ -1,12 +1,70 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:layout_height="match_parent" android:paddingLeft="5dp"
+    android:paddingRight="5dp"
+    android:paddingTop="5dp"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="com.hackapp.hacksignal.LoginActivity">
+    tools:context="com.hackapp.hacksignal.LoginActivity"
+    android:weightSum="1"
+    android:orientation="vertical"
+    android:background="@color/brand"
+    >
 
-    <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
 
-</RelativeLayout>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:id="@+id/loginLogo"
+        android:layout_margin="0dp"
+        android:hint="Username"
+
+
+        android:background="#ffffff" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="29dp"
+        android:id="@+id/UserName"
+        android:layout_gravity="center_vertical"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+
+        android:background="@color/brandDark"
+        android:hint="Username"
+        android:inputType="textEmailAddress"
+
+
+        android:layout_weight="0.08" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="31dp"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/usersPassword"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:hint="Password"
+        android:layout_weight="0.08"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@color/brandDark"
+
+
+        />
+
+    <Button
+        android:layout_width="340dp"
+        android:layout_height="60dp"
+        android:text="Login"
+        android:layout_marginTop="20dp"
+        android:background="#000000"
+        android:textColor="#ffffff"
+        android:textSize="24sp"
+
+
+        android:id="@+id/button"
+        android:layout_gravity="center_horizontal" />
+
+</LinearLayout>

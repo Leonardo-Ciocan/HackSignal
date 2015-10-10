@@ -20,8 +20,8 @@ public class MainActivity extends ActionBarActivity {
 
         ParseUser.registerSubclass(Beacon.class);
         // Enable Local Datastore.
-        Parse.enableLocalDatastore(this);
 
+        Parse.enableLocalDatastore(this);
         Parse.initialize(this, "siQADz4UoenmX5N4QDckRO9fbXBhOeFetwIKEvM0", "0ffORb3VV4u1u7ruXHPYRflfYLsFX3wqmtilWwZP");
 
 
