@@ -59,7 +59,7 @@
         android:layout_height="60dp"
         android:text="Login"
         android:layout_marginTop="20dp"
-        android:background="#000000"
+        android:background="@drawable/loginbutton"
         android:textColor="#ffffff"
         android:textSize="24sp"
 
