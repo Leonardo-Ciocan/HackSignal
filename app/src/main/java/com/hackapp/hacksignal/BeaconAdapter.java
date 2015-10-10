@@ -55,7 +55,7 @@ public class BeaconAdapter extends ArrayAdapter<Beacon> {
                 loc.setLongitude(point.getLongitude());
 
                 float dist = MainActivity.currentLocation.distanceTo(loc);
-                distance.setText(String.valueOf(dist) + " km away");
+                distance.setText(String.valueOf(dist) + " meters away");
             }
         }
 

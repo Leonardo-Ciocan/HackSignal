@@ -10,10 +10,18 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.hackapp.hacksignal.models.Beacon;
 import com.parse.FindCallback;
 import com.parse.Parse;
 import com.parse.ParseException;
+import com.parse.ParseGeoPoint;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
@@ -30,6 +38,7 @@ public class MainActivity extends ActionBarActivity {
     private BeaconAdapter adapter;
 
     public static Location currentLocation;
+    private GoogleMap map;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,69 +61,80 @@ public class MainActivity extends ActionBarActivity {
 
         ButterKnife.bind(this);
 
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
 
         adapter = new BeaconAdapter(this,new ArrayList<Beacon>());
 
-        ParseQuery<Beacon> query = new ParseQuery<Beacon>("Beacon");
-        query.findInBackground(new FindCallback<Beacon>() {
+
+        mapFragment.getMapAsync(new OnMapReadyCallback() {
             @Override
-            public void done(List<Beacon> objects, ParseException e) {
-                adapter =new BeaconAdapter(MainActivity.this, (ArrayList)objects);
-                beaconList.setAdapter(adapter);
+            public void onMapReady(GoogleMap googleMap) {
+                map = googleMap;
+                map.setMyLocationEnabled(true);
             }
         });
 
-         final LocationListener mLocationListener = new LocationListener() {
-            @Override
-            public void onLocationChanged(final Location location) {
-                Log.e("xapp", String.valueOf(location.getLatitude()));
-                currentLocation = location;
-                adapter.notifyDataSetChanged();
+                final LocationListener mLocationListener = new LocationListener() {
+                    @Override
+                    public void onLocationChanged(final Location location) {
+                        Log.e("xapp", String.valueOf(location.getLatitude()));
+                        currentLocation = location;
+                        ParseQuery<Beacon> query = new ParseQuery<Beacon>("Beacon");
+                        query.whereNear("location", new ParseGeoPoint(location.getLatitude(), location.getLongitude()));
+                        query.findInBackground(new FindCallback<Beacon>() {
+                            @Override
+                            public void done(List<Beacon> objects, ParseException e) {
+                                adapter = new BeaconAdapter(MainActivity.this, (ArrayList) objects);
+                                beaconList.setAdapter(adapter);
+                                map.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(), location.getLongitude()), 15));
+
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void onStatusChanged(String provider, int status, Bundle extras) {
+
+                    }
+
+                    @Override
+                    public void onProviderEnabled(String provider) {
+
+                    }
+
+                    @Override
+                    public void onProviderDisabled(String provider) {
+
+                    }
+                };
+
+
+                LocationManager mLocationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+
+                mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 10,
+                        150, mLocationListener);
+
             }
 
-             @Override
-             public void onStatusChanged(String provider, int status, Bundle extras) {
+            @Override
+            public boolean onCreateOptionsMenu(Menu menu) {
+                // Inflate the menu; this adds items to the action bar if it is present.
+                getMenuInflater().inflate(R.menu.menu_main, menu);
+                return true;
+            }
 
-             }
+            @Override
+            public boolean onOptionsItemSelected(MenuItem item) {
+                // Handle action bar item clicks here. The action bar will
+                // automatically handle clicks on the Home/Up button, so long
+                // as you specify a parent activity in AndroidManifest.xml.
+                int id = item.getItemId();
 
-             @Override
-             public void onProviderEnabled(String provider) {
+                //noinspection SimplifiableIfStatement
+                if (id == R.id.action_settings) {
+                    return true;
+                }
 
-             }
-
-             @Override
-             public void onProviderDisabled(String provider) {
-
-             }
-         };
-
-
-        LocationManager mLocationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-
-        mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 10,
-                150, mLocationListener);
-
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+                return super.onOptionsItemSelected(item);
+            }
         }
-
-        return super.onOptionsItemSelected(item);
-    }
-}
