@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.hackapp.hacksignal.models.WelcomeScreen;
+
 
 public class LoginActivity extends ActionBarActivity {
 
@@ -30,17 +32,16 @@ public class LoginActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
 
-                Log.d("Login Screen: ",  userName.getText().toString());
-                Log.d("Login Screen: ",  passWord.getText().toString());
+                Log.d("Login Screen: ", userName.getText().toString());
+                Log.d("Login Screen: ", passWord.getText().toString());
 
-                Intent intent = new Intent(LoginActivity.this, ProfileActivity.class );
+                Intent intent = new Intent(LoginActivity.this, WelcomeScreen.class );
 
                 intent.putExtra("UsrNmae",userName.getText().toString());
                 intent.putExtra("UsrNmae",passWord.getText().toString());
+                LoginActivity.this.startActivity(intent);
+
                 //commit
-
-
-
 
             }
         });
