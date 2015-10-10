@@ -35,6 +35,10 @@
             android:name=".BeaconDetailActivity"
             android:label="@string/title_activity_beacon_detail" >
         </activity>
+        <activity
+            android:name=".models.WelcomeScreen"
+            android:label="@string/title_activity_welcome_screen" >
+        </activity>
     </application>
 
 </manifest>
