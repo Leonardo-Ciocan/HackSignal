@@ -6,6 +6,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.parse.Parse;
+import com.parse.ParseException;
+import com.parse.ParseUser;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -18,7 +20,14 @@ public class MainActivity extends ActionBarActivity {
         // Enable Local Datastore.
         Parse.enableLocalDatastore(this);
 
-        Parse.initialize(this, "wn0ZJbAjDmDO3BZF3xosaZnviTuMPOrdD3oK1li8", "Mrp1PgdlRGTdnvCZjGAuGCqGr4KWQ8Mq69ChLHoa");
+        Parse.initialize(this, "siQADz4UoenmX5N4QDckRO9fbXBhOeFetwIKEvM0", "0ffORb3VV4u1u7ruXHPYRflfYLsFX3wqmtilWwZP");
+
+
+        try {
+            ParseUser.logIn("leonardo","cake");
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
