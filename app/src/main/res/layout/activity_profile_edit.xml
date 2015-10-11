@@ -20,43 +20,47 @@
         android:layout_below="@+id/textView"
         android:layout_alignParentStart="true">
 
-
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
             android:layout_margin="10dp"
-            android:hint="Name"
+            android:text="Leonardo Ciocan"
             android:ems="10"
             android:id="@+id/editText" />
+</android.support.design.widget.TextInputLayout>
 
-        <EditText
+
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:layout_margin="10dp"
-            android:hint="Password"
-            android:ems="10"
-            android:id="@+id/editText3" />
-
+            android:layout_height="wrap_content">
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
-            android:hint="e-mail"
+            android:hint="Email"
+            android:text="leonardo.ciocan@outlook.com"
             android:layout_margin="10dp"
             android:ems="10"
             android:id="@+id/editText2"
             android:layout_gravity="center_horizontal" />
+</android.support.design.widget.TextInputLayout>
 
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:hint="Language"
+            android:hint="Languages"
+            android:text="C# , Python , Java , Javascript"
             android:id="@+id/editTextLanguage"
             android:layout_gravity="center_horizontal" />
-
+</android.support.design.widget.TextInputLayout>
         <ListView
             android:layout_width="match_parent"
             android:layout_margin="10dp"
@@ -64,19 +68,18 @@
             android:id="@+id/listView"
             android:layout_gravity="center_horizontal" />
 
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:hint="GitHub"
+            android:text="https://github.com/Leonardo-Ciocan"
             android:id="@+id/editText4" />
+    </android.support.design.widget.TextInputLayout>
 
-        <Button
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Submit"
-            android:id="@+id/button"
-            android:layout_gravity="bottom" />
 
     </LinearLayout>
 

@@ -29,6 +29,8 @@
         android:minHeight="?attr/actionBarSize"/>
 
     <ListView
+        android:dividerHeight="0dp"
+        android:divider="@null"
         android:clipToPadding="false"
         android:layout_marginTop="@dimen/abc_action_bar_default_height_material"
         android:paddingTop="200dp"
@@ -37,4 +39,16 @@
         android:layout_height="fill_parent">
     </ListView>
 
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:elevation="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        app:backgroundTint="@color/brand"
+        android:clickable="true"
+        android:src="@drawable/ic_action_content_add"
+        android:layout_gravity="bottom|right"
+        />
 </FrameLayout>

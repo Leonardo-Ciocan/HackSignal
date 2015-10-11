@@ -1,13 +1,17 @@
 package com.hackapp.hacksignal;
 
+import android.content.Intent;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -15,9 +19,11 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.hackapp.hacksignal.models.Beacon;
+import com.hackapp.hacksignal.models.WelcomeScreen;
 import com.parse.FindCallback;
 import com.parse.Parse;
 import com.parse.ParseException;
@@ -40,23 +46,19 @@ public class MainActivity extends ActionBarActivity {
     public static Location currentLocation;
     private GoogleMap map;
 
+    public static Beacon selected;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ParseUser.registerSubclass(Beacon.class);
-        // Enable Local Datastore.
-
-        Parse.enableLocalDatastore(this);
-        Parse.initialize(this, "siQADz4UoenmX5N4QDckRO9fbXBhOeFetwIKEvM0", "0ffORb3VV4u1u7ruXHPYRflfYLsFX3wqmtilWwZP");
 
 
-        try {
-            ParseUser.logIn("leonardo","cake");
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Nearby beacons");
 
 
         ButterKnife.bind(this);
@@ -66,11 +68,21 @@ public class MainActivity extends ActionBarActivity {
         adapter = new BeaconAdapter(this,new ArrayList<Beacon>());
 
 
+        beaconList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                selected = (Beacon) parent.getAdapter().getItem(position);
+                Intent intent = new Intent(MainActivity.this, BeaconDetailActivity.class);
+                MainActivity.this.startActivity(intent);
+            }
+        });
+
         mapFragment.getMapAsync(new OnMapReadyCallback() {
             @Override
             public void onMapReady(GoogleMap googleMap) {
                 map = googleMap;
                 map.setMyLocationEnabled(true);
+                map.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
             }
         });
 
@@ -87,7 +99,12 @@ public class MainActivity extends ActionBarActivity {
                                 adapter = new BeaconAdapter(MainActivity.this, (ArrayList) objects);
                                 beaconList.setAdapter(adapter);
                                 map.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(), location.getLongitude()), 15));
-
+                                map.clear();
+                                for(Beacon b : objects){
+                                    map.addCircle(new CircleOptions().center(
+                                            new LatLng(b.getLocation().getLatitude() , b.getLocation().getLongitude())
+                                    ).fillColor(getResources().getColor(R.color.brand)).radius(20).strokeWidth(3).strokeColor(getResources().getColor(R.color.brandDark)));
+                                }
                             }
                         });
                     }
@@ -131,7 +148,9 @@ public class MainActivity extends ActionBarActivity {
                 int id = item.getItemId();
 
                 //noinspection SimplifiableIfStatement
-                if (id == R.id.action_settings) {
+                if (id == R.id.profile) {
+                    Intent register = new Intent(this, ProfileEditActivity.class);
+                    startActivity(register);
                     return true;
                 }
 

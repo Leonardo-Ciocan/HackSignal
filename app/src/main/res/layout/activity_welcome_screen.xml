@@ -2,83 +2,70 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="com.hackapp.hacksignal.models.WelcomeScreen"
-    android:background="@color/brand"
+    android:background="#fff"
     android:orientation="vertical"
 
     >
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_marginLeft="120dp"
-        android:textSize="30sp"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Welcome"
-        android:id="@+id/textView" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_marginLeft="140dp"
-        android:layout_marginTop="20dp"
-        android:textSize="30sp"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Jhon"
-        android:id="@+id/welcomeName" />
-
-    <Button
-        android:layout_width="900dp"
-        android:layout_height="2dp"
-        android:text=""
+    <ImageView
+        android:elevation="10dp"
         android:layout_marginTop="10dp"
-        android:id="@+id/lineBtn"
-        android:layout_gravity="center_horizontal"
-        android:background="@drawable/loginbutton"
-        android:textColor="#ffffff"
-        android:clickable="false"
-        />
-
-    <TextView
+        android:src="@drawable/hacksignal"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_marginLeft="35dp"
-        android:layout_marginTop="70dp"
-        android:textSize="30sp"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Lets get started..."
-        android:id="@+id/textView2" />
+        android:layout_height="320dp" />
+
+    <LinearLayout
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="40sp"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Welcome "
+            android:id="@+id/textView" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+
+            android:textSize="40sp"
+            android:textColor="@color/brand"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Jhon"
+            android:id="@+id/welcomeName" />
+    </LinearLayout>
+
 
     <Button
+        android:layout_marginTop="15dp"
         android:layout_width="310dp"
         android:layout_height="70dp"
         android:text="Create Beacon"
-        android:layout_marginTop="10dp"
         android:id="@+id/createBeaconBtn"
         android:textSize="18sp"
         android:layout_gravity="center_horizontal"
         android:background="@drawable/loginbutton"
-        android:textColor="#ffffff"
+        android:textColor="#fff"
         />
 
     <Button
         android:layout_marginTop="10dp"
         android:layout_width="310dp"
+        android:textColor="#fff"
+
         android:textSize="18sp"
         android:layout_height="70dp"
-        android:text="Explore Beacon"
+        android:text="Explore Beacons"
         android:id="@+id/exploreBeaconBtn"
         android:layout_gravity="center_horizontal"
         android:background="@drawable/loginbutton"
-        android:textColor="#ffffff"
-
-
         />
 
 

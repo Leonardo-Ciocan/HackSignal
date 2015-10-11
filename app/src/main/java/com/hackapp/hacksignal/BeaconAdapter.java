@@ -12,7 +12,9 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.hackapp.hacksignal.models.Beacon;
+import com.parse.ParseException;
 import com.parse.ParseGeoPoint;
+import com.parse.ParseUser;
 
 import org.w3c.dom.Text;
 
@@ -46,6 +48,7 @@ public class BeaconAdapter extends ArrayAdapter<Beacon> {
 
 
         TextView distance = (TextView)convertView.findViewById(R.id.beacon_distance);
+        TextView author = (TextView)convertView.findViewById(R.id.beacon_author);
 
         if(MainActivity.currentLocation != null) {
             ParseGeoPoint point = getItem(position).getLocation();
@@ -55,10 +58,16 @@ public class BeaconAdapter extends ArrayAdapter<Beacon> {
                 loc.setLongitude(point.getLongitude());
 
                 float dist = MainActivity.currentLocation.distanceTo(loc);
-                distance.setText(String.valueOf(dist) + " meters away");
+                distance.setText(String.valueOf(Math.round(dist)) + " meters away");
             }
         }
 
+        try {
+            getItem(position).getUser().fetchIfNeeded();
+            author.setText("By " + getItem(position).getUser().getString("name"));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
 
         return convertView;

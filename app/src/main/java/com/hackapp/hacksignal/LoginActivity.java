@@ -9,8 +9,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import com.hackapp.hacksignal.models.Beacon;
 import com.hackapp.hacksignal.models.WelcomeScreen;
+import com.parse.LogInCallback;
+import com.parse.Parse;
+import com.parse.ParseException;
+import com.parse.ParseUser;
 
 
 public class LoginActivity extends ActionBarActivity {
@@ -25,6 +31,18 @@ public class LoginActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        ParseUser.registerSubclass(Beacon.class);
+        // Enable Local Datastore.
+
+        Parse.enableLocalDatastore(this);
+        Parse.initialize(this, "siQADz4UoenmX5N4QDckRO9fbXBhOeFetwIKEvM0", "0ffORb3VV4u1u7ruXHPYRflfYLsFX3wqmtilWwZP");
+
+        if(ParseUser.getCurrentUser() != null){
+            Intent intent = new Intent(LoginActivity.this, WelcomeScreen.class);
+            LoginActivity.this.startActivity(intent);
+            finish();
+        }
+
         userName = (EditText) findViewById(R.id.userName);
         passWord = (EditText) findViewById(R.id.usersPassword);
         loginBtn = (Button) findViewById(R.id.loginBtn);
@@ -37,11 +55,20 @@ public class LoginActivity extends ActionBarActivity {
                 Log.d("Login Screen: ", userName.getText().toString());
                 Log.d("Login Screen: ", passWord.getText().toString());
 
-                Intent intent = new Intent(LoginActivity.this, WelcomeScreen.class );
 
-                intent.putExtra("UsrNmae",userName.getText().toString());
-                intent.putExtra("UsrNmae",passWord.getText().toString());
-                LoginActivity.this.startActivity(intent);
+                ParseUser.logInInBackground(userName.getText().toString(), passWord.getText().toString(),
+                        new LogInCallback() {
+                            @Override
+                            public void done(ParseUser user, ParseException e) {
+                                if (e == null) {
+                                    Intent intent = new Intent(LoginActivity.this, WelcomeScreen.class);
+                                    LoginActivity.this.startActivity(intent);
+                                } else {
+                                    Toast.makeText(LoginActivity.this , "Cannot login" , Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+
 
                 //commit
 

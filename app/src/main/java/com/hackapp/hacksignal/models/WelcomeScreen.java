@@ -1,5 +1,6 @@
 package com.hackapp.hacksignal.models;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
@@ -8,7 +9,9 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.hackapp.hacksignal.MainActivity;
 import com.hackapp.hacksignal.R;
+import com.parse.ParseUser;
 
 public class WelcomeScreen extends ActionBarActivity {
 
@@ -25,37 +28,17 @@ public class WelcomeScreen extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome_screen);
 
-        createBeacon = (Button) findViewById(R.id.createBeaconBtn);
         exploreBeacon = (Button) findViewById(R.id.exploreBeaconBtn);
         welcomeName = (TextView) findViewById(R.id.welcomeName);
-        textView2 = (TextView) findViewById(R.id.textView2);
-        myAnimation = AnimationUtils.loadAnimation(this, R.anim.text_animation);
-        myAnimation2 = AnimationUtils.loadAnimation(this, R.anim.label2_anim);
+        welcomeName.setText(ParseUser.getCurrentUser().getUsername());
 
-        createBeacon.setOnClickListener(new View.OnClickListener() {
+        exploreBeacon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
-               // Intent intent = new Intent(WelcomeScreen.this, );
-
-               // LoginActivity.this.startActivity(intent);
-
-                //commit
-
+                Intent intent = new Intent(WelcomeScreen.this, MainActivity.class);
+                WelcomeScreen.this.startActivity(intent);
             }
         });
-
-        welcomeName.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                welcomeName.startAnimation(myAnimation);
-            }
-        });
-            welcomeName.startAnimation(myAnimation);
-            textView2.startAnimation(myAnimation2);
-
-
 
 
     }

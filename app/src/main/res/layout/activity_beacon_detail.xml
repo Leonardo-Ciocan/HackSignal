@@ -1,26 +1,34 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="30dp"
-    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingTop="10dp"
     android:orientation="vertical"
     tools:context="com.hackapp.hacksignal.BeaconDetailActivity"
     android:weightSum="1"
     android:background="#FFF">
 
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
     <FrameLayout
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:background="@drawable/create_circle_name"
-        android:layout_gravity="center">
+        android:layout_gravity="center"
+        android:layout_marginLeft="-30dp">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="New Text"
-            android:id="@+id/textView"
+            android:id="@+id/name"
             android:layout_gravity="center"
-            android:textSize="40dp"
+            android:textSize="22dp"
             android:textColor="#ffffff"/>
     </FrameLayout>
 
@@ -34,45 +42,135 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Text"
+        android:text="Bill Gates"
         android:textColor="#ffffff"
-        android:id="@+id/textView2"
+        android:id="@+id/user"
         android:layout_gravity="center"
-        android:textSize="20dp" />
+        android:textSize="14dp" />
 
 </FrameLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:layout_weight="1"
-            android:layout_width="134dp"
-            android:layout_height="wrap_content"
-            android:text="New Text"
-            android:textColor="#ffc107"
-            android:textSize="20dp"
-            android:id="@+id/textView3"
-            android:layout_gravity="left|center_vertical"
-            android:paddingLeft="5dp" />
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:background="@drawable/loginbutton"
+                android:id="@+id/navigate"
+                android:layout_weight="1"
+                android:layout_gravity="center_horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:padding="10dp"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:id="@+id/imageView"
+                    android:rotation="45"
+                    android:src="@drawable/ic_action_maps_navigation"
+                    android:layout_gravity="right|center_vertical" />
+                <TextView
+                    android:layout_width="134dp"
+                    android:layout_height="wrap_content"
+                    android:text="New Text"
+                    android:textColor="#fff"
+                    android:textSize="20dp"
+                    android:id="@+id/distance"
+                    android:layout_gravity="left|center_vertical"
+                    android:paddingLeft="5dp" />
 
-        <ImageView
-            android:layout_width="71dp"
-            android:layout_height="71dp"
-            android:id="@+id/imageView"
-            android:rotation="45"
-            android:src="@drawable/ic_action_maps_navigation"
-            android:layout_gravity="right|center_vertical" />
-    </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/contact"
+                android:background="@drawable/loginbutton"
+                android:layout_weight="1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:padding="10dp"
+
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/ic_action_communication_messenger"
+                    android:layout_gravity="right|center_vertical" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Contact"
+                    android:textColor="#fff"
+                    android:textSize="20dp"
+
+                    android:layout_gravity="left|center_vertical"
+                    android:paddingLeft="5dp" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+    <TextView
+        android:layout_width="343dp"
+        android:layout_height="wrap_content"
+        android:text="Tech used"
+        android:gravity="center_horizontal"
+        android:textColor="#000"
+        android:textSize="20dp"/>
 
     <TextView
         android:layout_width="343dp"
         android:layout_height="wrap_content"
         android:text="Language"
-        android:textSize="40dp"
-        android:gravity="center"
-        android:id="@+id/textView4"
-        android:layout_gravity="center_horizontal"
-        android:layout_weight="0.20" />
+        android:textSize="15dp"
+        android:gravity="center_horizontal"
+        android:id="@+id/tech"/>
 
-</LinearLayout>
+
+    <TextView
+        android:textColor="#000"
+
+        android:layout_width="343dp"
+        android:layout_height="wrap_content"
+        android:text="Looking for"
+        android:gravity="center_horizontal"
+
+        android:textSize="20dp"/>
+    <TextView
+        android:layout_width="343dp"
+        android:layout_height="wrap_content"
+        android:text="Purpose"
+        android:textSize="15dp"
+        android:gravity="center_horizontal"
+        android:id="@+id/purpose" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/onmyway"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_width="wrap_content"
+        android:padding="5dp"
+        android:layout_height="wrap_content">
+
+        <FrameLayout
+            android:background="@drawable/create_circle"
+            android:layout_width="60dp"
+            android:padding="10dp"
+            android:layout_height="60dp">
+
+            <ImageView
+            android:layout_gravity="center"
+            android:src="@drawable/ic_coming"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"/>
+
+        </FrameLayout>
+
+        <TextView
+            android:layout_gravity="center"
+            android:text="On my way"
+            android:textSize="10pt"
+            android:textColor="@color/brand"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+</FrameLayout>
